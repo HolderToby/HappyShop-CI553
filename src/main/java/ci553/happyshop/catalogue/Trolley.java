@@ -59,6 +59,16 @@ public class Trolley {
      * }
      */
     public void addProduct(Product product) {
+        for (int i =0; i < products.size(); i++) {
+            Product p = products.get(i);
+            if (p.getProductId().equals(product.getProductId())){
+                p.setOrderedQuantity(p.getOrderedQuantity()+1);
+                return;
+            } else if ( Integer.parseInt( product.getProductId()) < Integer.parseInt( p.getProductId()) ){
+                products.add(i, product); // product is inserted into trolley in sorted position (low -> high)
+                return;
+            }
+        }
         products.add(product); // product is appended to the end of the trolley
     }
 
